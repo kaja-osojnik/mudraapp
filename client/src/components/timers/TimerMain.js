@@ -1,11 +1,10 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment } from 'react';
 import { connect } from 'react-redux';
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import buddha from "../img/buddha.png";
+import buddha from "../../img/buddha.png";
+import ReactPlayer from "react-player";
 
 const TimerMain = ({ mainTime }) => {
-    const [active, setActive] = useState(true);
-
     const remainingTimeToString = (remainingTime) => {
         if (!remainingTime) {
             return '00:00'
@@ -24,19 +23,18 @@ const TimerMain = ({ mainTime }) => {
     }
 
     const renderTime = ({ remainingTime }) => {
-        if (remainingTime === 0) {
+            const bell = require("../../sounds/bell.wav")
             return (
-                <div>finished</div>
+                <Fragment>
+                    <div className="timer timer-main">
+                        <div className="value">{remainingTimeToString(remainingTime)}</div>
+                    </div>
+                    {remainingTime === 0 &&
+                    <ReactPlayer url={bell} playing volume={0.5}/>
+                    }
+                </Fragment>
             )
-        }
-
-        return (
-            <div className="timer timer-main">
-                <div className="value">{remainingTimeToString(remainingTime)}</div>
-            </div>
-        );
     };
-
 
     return(
         <Fragment>

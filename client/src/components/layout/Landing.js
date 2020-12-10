@@ -1,11 +1,11 @@
 import React, {Fragment} from 'react';
 import TimeField from "react-simple-timefield";
 import { connect } from 'react-redux';
-import {setTime, playTimer, resetTimer, shuffleCountdown, setNewTimer} from "../actions/maintime";
-import Timer from "./Timer";
+import {setTime, playTimer, resetTimer, shuffleCountdown, setNewTimer} from "../../actions/maintime";
+import Timer from "../timers/Timer";
 
 const Landing = ({ mainTime, setTime, playTimer, resetTimer, shuffleCountdown, setNewTimer }) => {
-    const { playing, time, displayTime } = mainTime
+    const { playing, displayTime } = mainTime
 
     const onTimeChange = (e) => {
         setTime(e.target.value)
@@ -19,10 +19,11 @@ const Landing = ({ mainTime, setTime, playTimer, resetTimer, shuffleCountdown, s
                         <TimeField
                             className="timer"
                             value={displayTime}
-                            onChange={e=> onTimeChange(e)} />
+                            onChange={e=> onTimeChange(e)}
+                        />
                         <div className="countdown-checkbox">
-                            <input type="checkbox" id="countdown" name="countdown" value="countdown" onChange={shuffleCountdown}/>
-                            <label htmlFor="countdown"> + 10 second countdown</label>
+                            <input type="checkbox" id="countdowncheck" name="countdowncheck" value="countdowncheck" onChange={shuffleCountdown}/>
+                            <label htmlFor="countdowncheck"> + 10 second countdown</label>
                         </div>
                     </div>
                     :
@@ -30,14 +31,17 @@ const Landing = ({ mainTime, setTime, playTimer, resetTimer, shuffleCountdown, s
                 }
 
             {!playing ?
-                <button onClick={playTimer}>
-                    meditate
-                </button>
+                <div className="meditate-btn">
+                    <button onClick={playTimer}>
+                        meditate
+                    </button>
+                </div>
+
                 :
 
                 <div className="bottom-btns">
                     <button onClick={resetTimer}>reset</button>
-                <span className="set-new" onClick={setNewTimer}>SET NEW TIMER</span>
+                <span className="set-new" onClick={() => {setNewTimer(); setTime("20:00 ")}}>SET NEW TIMER</span>
                 </div>
             }
 

@@ -1,5 +1,4 @@
-import {SET_TIME, PLAY_TIMER, RESET_TIMER, SHUFFLE_COUNTDOWN, SET_NEW_TIMER, SET_DELAY, REGISTER_SUCCESS} from './types'
-import axios from "axios";
+import {SET_TIME, PLAY_TIMER, RESET_TIMER, SHUFFLE_COUNTDOWN, SET_NEW_TIMER, SET_DELAY, PLAY_SAVED_TIMER, STOP_SAVED_TIMER } from './types';
 
 export const setTime = ( displayTime ) => dispatch => {
     let minutes = parseInt(displayTime.slice(0,2))
@@ -43,5 +42,16 @@ export const setNewTimer = () => dispatch => {
 export const setDelay = () => dispatch => {
     dispatch({
         type: SET_DELAY
+    })
+}
+
+export const playSavedTimer = timerItemData => async dispatch => {
+    await dispatch({
+        type: STOP_SAVED_TIMER
+    })
+
+    dispatch({
+        type: PLAY_SAVED_TIMER,
+        payload: timerItemData
     })
 }

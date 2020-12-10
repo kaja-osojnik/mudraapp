@@ -1,9 +1,18 @@
-import { SET_TIME, PLAY_TIMER, RESET_TIMER, SHUFFLE_COUNTDOWN, SET_NEW_TIMER, SET_DELAY } from '../actions/types'
+import {
+    SET_TIME,
+    PLAY_TIMER,
+    RESET_TIMER,
+    SHUFFLE_COUNTDOWN,
+    SET_NEW_TIMER,
+    SET_DELAY,
+    PLAY_SAVED_TIMER,
+    STOP_SAVED_TIMER
+} from '../actions/types'
 
 const initialState = {
     time: 1200,
     displayTime: '20:00',
-    countdown: false,
+    countdowncheck: false,
     playing: false,
     delay: false
 }
@@ -35,19 +44,34 @@ export default function(state = initialState, action) {
                 ...state,
                 playing: false,
                 delay: false,
-                countdown: false
+                countdowncheck: false
         }
 
         case SHUFFLE_COUNTDOWN:
             return {
                 ...state,
-                countdown: !state.countdown
+                countdowncheck: !state.countdowncheck
         }
 
         case SET_DELAY:
             return {
                 ...state,
                 delay: true
+            }
+
+        case PLAY_SAVED_TIMER:
+            return {
+                ...state,
+                countdowncheck: payload.countdowncheck,
+                time: payload.time,
+                playing: true
+            }
+
+        case STOP_SAVED_TIMER:
+            return {
+                ...state,
+                playing: false,
+                delay: false
             }
 
         default:

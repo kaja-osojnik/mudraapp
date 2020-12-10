@@ -1,16 +1,10 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import buddha from "../img/buddha.png";
+import ReactPlayer from "react-player";
 
 const TimerCountdown = () => {
     const renderTime = ({ remainingTime }) => {
-        if (remainingTime === 0) {
-            return (
-                <div>finished</div>
-            )
-        }
-
         return (
             <div className="timer">
                 <div className="value">{remainingTime}</div>
