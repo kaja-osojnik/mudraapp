@@ -4,9 +4,11 @@ import { setDelay } from "../../actions/maintime";
 import TimerMain from "./TimerMain";
 import TimerCountdown from "./TimerCountdown";
 import ReactPlayer from "react-player";
+import {CSSTransition} from "react-transition-group";
 
 const Timer = ({ mainTime, setDelay }) => {
     const { countdowncheck, delay } = mainTime
+    const appearHome = true;
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -21,7 +23,13 @@ const Timer = ({ mainTime, setDelay }) => {
             <Fragment>
                 <ReactPlayer url={bell} playing volume={0.5} width="0" height="0"/>
                 <div className="timer-wrapper">
+                    <CSSTransition
+                        in={appearHome}
+                        appear={true}
+                        timeout={1000}
+                        classNames="contentfade">
                     <TimerMain />
+                    </CSSTransition>
                 </div>
             </Fragment>
         )

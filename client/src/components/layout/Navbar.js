@@ -34,9 +34,9 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, setTime, set
 
     const guestLinks = (
         <nav>
-            <ul onClick={setNewTimer}>
-                <li className="set-new"><Link to="/register">Sign Up</Link></li>
-                <li className="set-new"><Link to="/login">Log In</Link></li>
+            <ul onClick={setNewTimer} className="sign-up-menu">
+                <li className="set-new sign-up"><Link to="/register">Sign Up</Link></li>
+                <li className="set-new log-in"><Link to="/login">Log In</Link></li>
             </ul>
         </nav>
     )

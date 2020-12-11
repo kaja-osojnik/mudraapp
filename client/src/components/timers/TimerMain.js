@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import buddha from "../../img/buddha.png";
 import ReactPlayer from "react-player";
+import {CSSTransition} from "react-transition-group";
 
 const TimerMain = ({ mainTime }) => {
+    const appearHome = true;
     const remainingTimeToString = (remainingTime) => {
         if (!remainingTime) {
             return '00:00'
@@ -48,7 +50,13 @@ const TimerMain = ({ mainTime }) => {
             >
                 {renderTime}
             </CountdownCircleTimer>
-            <img src={buddha} alt="Buddha" />
+            <CSSTransition
+                in={appearHome}
+                appear={true}
+                timeout={1000}
+                classNames="contentfade">
+                    <img src={buddha} alt="Buddha" />
+            </CSSTransition>
         </Fragment>
     )
 }

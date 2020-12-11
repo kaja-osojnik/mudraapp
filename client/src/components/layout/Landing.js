@@ -3,10 +3,11 @@ import TimeField from "react-simple-timefield";
 import { connect } from 'react-redux';
 import {setTime, playTimer, resetTimer, shuffleCountdown, setNewTimer} from "../../actions/maintime";
 import Timer from "../timers/Timer";
+import {CSSTransition} from "react-transition-group";
 
 const Landing = ({ mainTime, setTime, playTimer, resetTimer, shuffleCountdown, setNewTimer }) => {
     const { playing, displayTime } = mainTime
-
+    const appearHome = true;
     const onTimeChange = (e) => {
         setTime(e.target.value)
     }
@@ -27,7 +28,13 @@ const Landing = ({ mainTime, setTime, playTimer, resetTimer, shuffleCountdown, s
                         </div>
                     </div>
                     :
+                    <CSSTransition
+                        in={appearHome}
+                        appear={true}
+                        timeout={1000}
+                        classNames="contentfade">
                     <Timer />
+                    </CSSTransition>
                 }
 
             {!playing ?

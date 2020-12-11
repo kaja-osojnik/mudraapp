@@ -149,6 +149,7 @@ main{
 
 main .main-wrapper{
     width: 100%;
+    height: 320px;
 }
 
 .main-first-wrap{
@@ -983,10 +984,25 @@ small{
 @media only screen and (max-width: 600px) {
     .sign-in{
         width: auto;
+        padding: 0 20px;
+    }
+
+    .sign-up{
+        display: none;
+    }
+
+    .sign-up-menu{
+        position: fixed;
+        bottom: 0;
+        margin: 0;
+        padding:0;
+        width: 100%;
+        left: 0;
+        display: flex;
+        justify-content: center;
     }
 
     .dashboard-wrap{
-        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
