@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from "./types";
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, LOGIN_PAGE, NOT_LOGIN_PAGE } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
 // Load User
@@ -83,3 +83,19 @@ export const logout = () => dispatch => {
         type: LOGOUT
     })
 }
+
+
+// Login page
+export const loginPage = () => dispatch => {
+    dispatch({
+        type: LOGIN_PAGE
+    })
+}
+
+// Not login page
+export const notLoginPage = () => dispatch => {
+    dispatch({
+        type: NOT_LOGIN_PAGE
+    })
+}
+

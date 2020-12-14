@@ -3,7 +3,7 @@ import {
     TIMER_ERROR,
     DELETE_TIMER,
     ADD_TIMER,
-    ALREADY_EXISTS
+    ALREADY_EXISTS, RESET_MSG
 } from '../actions/types'
 
 const initialState = {
@@ -45,13 +45,19 @@ export default  function(state = initialState, action) {
                 ...state,
                 timers: [payload, ...state.timers],
                 loading: false,
-                msg: ""
+                msg: "Timer saved!"
             }
 
         case ALREADY_EXISTS:
             return {
                 ...state,
                 msg: payload
+            }
+
+        case RESET_MSG:
+            return {
+                ...state,
+                msg: ""
             }
 
         default:

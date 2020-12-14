@@ -18,3 +18,6 @@ export const ADD_TIMER = 'ADD_TIMER';
 export const PLAY_SAVED_TIMER = 'PLAY_SAVED_TIMER';
 export const STOP_SAVED_TIMER = 'STOP_SAVED_TIMER';
 export const ALREADY_EXISTS = 'ALREADY_EXISTS';
+export const RESET_MSG = 'RESET_MSG';
+export const LOGIN_PAGE = 'LOGIN_PAGE';
+export const NOT_LOGIN_PAGE = 'NOT_LOGIN_PAGE';

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteTimer } from "../../actions/timer";
 import { playSavedTimer} from "../../actions/maintime";
+import cdIcon from "../../img/timericon2.svg"
 
 
 const TimerItem = ({ playSavedTimer,deleteTimer, auth, timer: { _id, timer, countdown} }) => {
@@ -22,14 +23,13 @@ const TimerItem = ({ playSavedTimer,deleteTimer, auth, timer: { _id, timer, coun
     return(
         <div className="li-timer-item">
             <button className="remove-btn" onClick={(e) => deleteTimer(_id)}>&#10005;</button>
-            {countdown ?
-                <span>&#9684;</span>
-                :
-                <span>&#9678;</span>
+            {countdown &&
+                <span>
+                    <img src={cdIcon} alt="cd-icon" />
+                </span>
             }
             <div className="single-timer-value" onClick={(e) => playSavedTimer(timerItemData)}>
                 {timer}
-                <small>2 min interval</small>
             </div>
 
         </div>

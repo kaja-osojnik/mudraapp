@@ -1,10 +1,14 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Landing from "./Landing";
 import { CSSTransition } from 'react-transition-group';
+import { notLoginPage } from '../../actions/auth';
 
-const Home = ({ isAuthenticated }) => {
+const Home = ({ isAuthenticated, notLoginPage }) => {
+    useEffect(() => {
+        notLoginPage();
+    }, [])
     const appearHome = true;
 
     if(isAuthenticated) {
@@ -33,4 +37,4 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 })
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, {notLoginPage})(Home);

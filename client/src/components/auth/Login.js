@@ -1,12 +1,16 @@
-import React, {Fragment, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link, Redirect } from "react-router-dom";
-import { login } from '../../actions/auth';
+import {login, loginPage} from '../../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setTime } from "../../actions/maintime";
 import {CSSTransition} from "react-transition-group";
 
-const Login = ({ login, isAuthenticated, setTime, alert }) => {
+const Login = ({ login, isAuthenticated, setTime, alert, loginPage }) => {
+    useEffect(() => {
+        loginPage()
+    }, [])
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -84,4 +88,4 @@ Login.propTypes = {
     isAuthenticated: PropTypes.bool
 }
 
-export default connect(mapStateToProps, { login, setTime })(Login);
+export default connect(mapStateToProps, { login, setTime, loginPage })(Login);

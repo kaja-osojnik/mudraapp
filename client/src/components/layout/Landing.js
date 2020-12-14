@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import TimeField from "react-simple-timefield";
+import TimeField from "../../controls/TimeField";
 import { connect } from 'react-redux';
 import {setTime, playTimer, resetTimer, shuffleCountdown, setNewTimer} from "../../actions/maintime";
 import Timer from "../timers/Timer";
@@ -24,7 +24,9 @@ const Landing = ({ mainTime, setTime, playTimer, resetTimer, shuffleCountdown, s
                         />
                         <div className="countdown-checkbox">
                             <input type="checkbox" id="countdowncheck" name="countdowncheck" value="countdowncheck" onChange={shuffleCountdown}/>
-                            <label htmlFor="countdowncheck"> + 10 second countdown</label>
+                            <label htmlFor="countdowncheck">
+                                + 10 second countdown
+                            </label>
                         </div>
                     </div>
                     :

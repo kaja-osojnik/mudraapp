@@ -5,6 +5,8 @@ import { getTimers } from "../../actions/timer";
 import Spinner from "../layout/Spinner";
 import TimerItem from "./TimerItem";
 import ClickAwayListener from "react-click-away-listener";
+import {RiEyeCloseLine} from 'react-icons/ri';
+import { RiEyeLine } from 'react-icons/ri';
 
 const TimersList = ({getTimers, timer: { timers, loading}}) => {
     useEffect(() => {
@@ -20,12 +22,12 @@ const TimersList = ({getTimers, timer: { timers, loading}}) => {
             <ClickAwayListener onClickAway={() => handleOpen(false)}>
                 <div className="show-saved-wrapper">
                     <div className="show-saved-btn" onClick={() => handleOpen(true)}>
-                        +
+                        <RiEyeLine/>
                     </div>
                 </div>
                 <div className={`timers-list ${open && "open"}`}>
                     <div className="timer-type">
-                        <p onClick={() => handleOpen(false)}>&#10005;</p>
+                        <p onClick={() => handleOpen(false)}><RiEyeCloseLine/></p>
                         <span>MY SAVED TIMERS</span>
                     </div>
                     {loading ? <Spinner/> :

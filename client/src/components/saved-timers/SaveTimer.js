@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addTimer, alreadyExists } from "../../actions/timer";
+import SaveTimerMsg from "./SaveTimerMsg";
+import {CSSTransition} from "react-transition-group";
 
 
 const SaveTimer = ({ alreadyExists, addTimer, maintime: { time, countdowncheck, playing }, timers, msg }) => {
@@ -27,6 +29,8 @@ const SaveTimer = ({ alreadyExists, addTimer, maintime: { time, countdowncheck, 
         countdown: countdowncheck
     }
 
+    const appearHome = true;
+
     const { timer, countdown } = formData
 
     const onSubmit = e => {
@@ -41,7 +45,6 @@ const SaveTimer = ({ alreadyExists, addTimer, maintime: { time, countdowncheck, 
         }
         else{
             alreadyExists();
-            console.log('Že obstaja')
         }
     }
 
@@ -54,7 +57,17 @@ const SaveTimer = ({ alreadyExists, addTimer, maintime: { time, countdowncheck, 
                     <form className="save-timer-form" onSubmit={e => onSubmit(e)}>
                         <button type="submit" className="save-timer-btn"><span className="set-new">SAVE TIMER</span></button>
                     </form>
-                    <small>{msg}</small>
+                    {msg.length ?
+                        <CSSTransition
+                            in={appearHome}
+                            appear={true}
+                            timeout={1000}
+                            classNames="contentfade">
+                            <SaveTimerMsg />
+                        </CSSTransition>
+                        :
+                        ""
+                    }
                 </Fragment>
 
             }

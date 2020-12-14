@@ -1,15 +1,14 @@
-import React, {Fragment, setState, useState} from 'react';
+import React, {Fragment, useLayoutEffect, useState} from 'react';
 import logo from "../../img/mudra_logo.png";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { logout } from "../../actions/auth";
 import PropTypes from 'prop-types';
 import ClickAwayListener from "react-click-away-listener";
-import { setNewTimer, setTime} from "../../actions/maintime";
-import { CSSTransition } from 'react-transition-group';
+import { setNewTimer, setTime } from "../../actions/maintime";
 
 
-const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, setTime, setNewTimer }) => {
+const Navbar = ({ auth: { isAuthenticated, loading, user, loginpage }, logout, setTime, setNewTimer }) => {
     const [open, handleOpen] = useState(false);
 
     const authLinks = (
@@ -22,7 +21,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, setTime, set
                     {open && (
                         <div>
                             <div className="triangle"> </div>
-                            <ul onClick={() => {logout(); handleOpen(!open); setTime("20:00") }} className="dropdown-menu">
+                            <ul onClick={() => {logout(); handleOpen(!open); setTime("20:00"); setNewTimer() }} className="dropdown-menu">
                                 <li><span>Logout</span></li>
                             </ul>
                         </div>
@@ -35,8 +34,8 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, setTime, set
     const guestLinks = (
         <nav>
             <ul onClick={setNewTimer} className="sign-up-menu">
-                <li className="set-new sign-up"><Link to="/register">Sign Up</Link></li>
-                <li className="set-new log-in"><Link to="/login">Log In</Link></li>
+                <li className={`set-new sign-up ${loginpage && "loginpage"}`}><Link to="/register">Sign Up</Link></li>
+                <li className={`set-new log-in ${loginpage && "loginpage"}`}><Link to="/login">Log In</Link></li>
             </ul>
         </nav>
     )
@@ -64,7 +63,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, setTime, set
             {!isAuthenticated &&
                 <footer>
                     <div>
-                        <h2>INFO</h2>
+                        <h2>MUDRA</h2>
                     </div>
                 </footer>
             }

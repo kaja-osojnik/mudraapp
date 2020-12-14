@@ -1,11 +1,14 @@
-import React, {Fragment, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, Redirect } from "react-router-dom"
 import { connect } from 'react-redux';
-import { register } from  "../../actions/auth"
+import { register, loginPage } from  "../../actions/auth"
 import PropTypes from 'prop-types';
 import {CSSTransition} from "react-transition-group";
 
-const Register = ({ register, isAuthenticated }) => {
+const Register = ({ register, isAuthenticated, loginPage }) => {
+    useEffect(() => {
+        loginPage()
+    }, [])
     const appearHome = true;
     const [formData, setFormData] = useState({
         name: '',
@@ -114,4 +117,4 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 })
 
-export default connect(mapStateToProps, { register })(Register);
+export default connect(mapStateToProps, { register, loginPage })(Register);

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_TIMERS, TIMER_ERROR, DELETE_TIMER, ADD_TIMER, ALREADY_EXISTS} from "./types";
+import {GET_TIMERS, TIMER_ERROR, DELETE_TIMER, ADD_TIMER, ALREADY_EXISTS, RESET_MSG} from "./types";
 
 // Get Timers
 export const getTimers = () => async dispatch => {
@@ -45,10 +45,17 @@ export const addTimer = formData => async dispatch => {
     try{
         const res = await axios.post('/api/timers/', formData, config);
 
-        dispatch({
+        await dispatch({
             type: ADD_TIMER,
             payload: res.data
         })
+
+        setTimeout( () => {
+                dispatch({
+                    type: RESET_MSG,
+                })
+            }
+            , 1500);
     } catch(err) {
         dispatch({
             type: TIMER_ERROR,
@@ -59,9 +66,16 @@ export const addTimer = formData => async dispatch => {
 }
 
 // Already Exists
-export const alreadyExists = () => dispatch => {
-    dispatch({
+export const alreadyExists = () => async dispatch => {
+    await dispatch({
         type: ALREADY_EXISTS,
         payload: '*Psst, you already saved a timer with this value.'
     })
+
+    setTimeout( () => {
+            dispatch({
+                type: RESET_MSG,
+            })
+    }
+ , 2000);
 }
