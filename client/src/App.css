@@ -376,7 +376,7 @@ button.reset::after{
     padding: 0;
     margin: 0;
     height: calc(100vh - 113px);
-    overflow: overlay;
+    overflow: scroll;
 }
 
 .saved-timers li{
